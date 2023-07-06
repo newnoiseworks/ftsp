@@ -1,0 +1,19 @@
+~ begin
+
+Narrator: [i]You are [b]BJ Martin[/b], and you aren't an ace detective but you want to play one on Reality TV. You just need a crime to catch and then you're all set.[/i]
+
+Narrator: [i]For months now you've been deep undercover in a seedy bar for robots. You've been posing as a PianoMan Bot, using your past as a high school band leader to lead you through the hits, belting out Top 40 Robot tunes from the post millenium era of 3030 as heard on Classic Silicon Rock Radio.[/i]
+
+Narrator: [i]No one suspects you're really a human.[/i]
+
+Narrator: [i]But there's something you, the player, know about yourself that you, BJ Martin, doesn't -- BJ Martin is an AI Psychic. He was born with the power to read robot algorithm's minds - in real time, at their own speed.[/i]
+
+Narrator: [i]But you, BJ Martin, are in denial about this. You, BJ Martin, are also dumb - thick as rocks. You just think you have an active imagination and seemingly only make dialogue choices that reflect this combination of denial of instict along with being, well, stupid as f***.[/i]
+
+Narrator: [i]You're stupid as f***.[/i]
+
+Narrator: [i]Erm, correction: you, BJ Martin, are stupid as f***.[/i]
+
+Narrator: [i]Thus you, the Player, and you, BJ Martin, become as one and begin your journey in this, [b]From The Second Perspective: The Piano Man[/b][/i]
+
+do State.change_scene("res://prototype.tscn")

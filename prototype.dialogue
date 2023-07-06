@@ -3,7 +3,7 @@
 You: Can I ask you a question?
 Robot One: Yes, sure you can ask me a question.
 - Where is the grey poupon limo? (asked {{State.grey_poupon_line_count}} times) => poupon
-- If I asked you to do a crime, would you consider it?
+- If I asked you to do a crime, would you consider it? => crimes
 - A random assortment of grunts and wails
 - Leave conversation => END
 
@@ -18,8 +18,19 @@ if State.grey_poupon_line_count > 2
 else if State.grey_poupon_line_count > 1
 	Robot One AI: _This guy's an idiot. He just keeps asking the same question again and again. I keep saying the same thing. There's no exit to this loop. He's just recursively stupid. Humans._
 Robot One: I'm just not sure what that is.
-Narrator: a slight pause chills the air's emotional comforts
+Narrator: [i]a slight pause chills the air's emotional comforts[/i]
 if State.grey_poupon_line_count > 1
 	Robot One: ... Why have you asked me that {{State.grey_poupon_line_count}} times?
+
+=> begin
+
+~ crimes
+
+You: So if I asked you to do a favor for me, and it was illegal, would you do it?
+Robot One AI: [i]Wow. He just opened with the qualifier that it was a crime. That's either very stupid, or very honest. Or honestly very, very stupid. Either way, really.[/i]
+Robot One: So we're just talking here, yeah?
+You: Exactly. So here's the gig -
+Narrator: [i]You go on to describe a sordid series of affairs you are clearly making up as you go along[/i]
+Robot One: Oh. No, no, I don't think I'd like that at all.
 
 => begin

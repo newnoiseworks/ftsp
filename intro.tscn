@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://k34hntmae6wm"]
+
+[ext_resource type="PackedScene" uid="uid://djp45grpy7gdg" path="res://DialogueBox/dialogue_box.tscn" id="1_52lwt"]
+[ext_resource type="Resource" uid="uid://cidt54am0y5xf" path="res://intro.dialogue" id="2_sukvi"]
+
+[node name="DialogueBox" instance=ExtResource("1_52lwt")]
+dialogue_file = ExtResource("2_sukvi")
