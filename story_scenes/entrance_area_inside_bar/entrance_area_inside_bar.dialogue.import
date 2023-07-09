@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://t67fwxf5f2ix"
+path="res://.godot/imported/entrance_area_inside_bar.dialogue-d92c4e920d7cf3d41f79f5d452157128.tres"
+
+[deps]
+
+source_file="res://story_scenes/entrance_area_inside_bar/entrance_area_inside_bar.dialogue"
+dest_files=["res://.godot/imported/entrance_area_inside_bar.dialogue-d92c4e920d7cf3d41f79f5d452157128.tres"]
+
+[params]
+
+defaults=true

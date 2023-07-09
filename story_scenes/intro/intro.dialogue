@@ -16,4 +16,4 @@ Narrator: [i]Erm, correction: you, BJ Martin, are stupid as f***.[/i]
 
 Narrator: [i]Thus you, the Player, and you, BJ Martin, become as one and begin your journey in this, [b]From The Second Perspective: The Piano Man[/b][/i]
 
-do State.change_scene("res://prototype.tscn")
+do State.change_scene("res://story_scenes/entrance_area_inside_bar/entrance_area_inside_bar.tscn")

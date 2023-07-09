@@ -1,0 +1,23 @@
+~ begin
+
+Narrator: [i]You enter the bar. There are several people to talk to. Some look up at you, then back down at their drinks or whomever. Jane the bartender acknowledges you with a bit of a nod and a smile before returning back to polishing oil flasks.[/i]
+- Hang your coat up on the rack
+- Go to work (play the piano)
+- Get a drink at the bar
+- Talk to someone else => talk
+
+=> END
+
+~ talk
+Narrator: [i]You look around and see all the usual robot flunkees, and remind yourself to maintain discipline with language: you're under cover, after all. Mask on.[/i]
+- Talk to Sophia => sophia
+- Talk to Nikki
+- Talk to the Three Losers
+- Talk to Paul
+- Talk to Davy Snake
+- Talk to the Man
+
+=> END
+
+~ sophia
+do State.change_scene("res://story_scenes/sophia/sophia.tscn")

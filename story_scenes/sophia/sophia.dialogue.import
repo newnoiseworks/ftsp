@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://boif7eac3442u"
+path="res://.godot/imported/sophia.dialogue-c145a574f40f5de5af3e839c751f0510.tres"
+
+[deps]
+
+source_file="res://story_scenes/sophia/sophia.dialogue"
+dest_files=["res://.godot/imported/sophia.dialogue-c145a574f40f5de5af3e839c751f0510.tres"]
+
+[params]
+
+defaults=true
