@@ -20,4 +20,6 @@ Narrator: [i]You look around and see all the usual robot flunkees, and remind yo
 => END
 
 ~ sophia
+Narrator: [i]You walk over to Sophia's end of the bar.[/i]
 do State.change_scene("res://story_scenes/sophia/sophia.tscn")
+=> END

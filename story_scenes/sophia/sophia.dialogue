@@ -1,36 +1,67 @@
 ~ begin
 
+Narrator: [i]You approach Sophia, old and alone as ever, save for the flask in her hand and the Oilcahol in her filtration systems. You know her game - questions. So you beat her to it, to control the frame.[/i]
+
+=> question
+
+~ question
+
 You: Can I ask you a question?
-Robot One: Yes, sure you can ask me a question.
-- Where is the grey poupon limo? (asked {{State.grey_poupon_line_count}} times) => poupon
+Sophia: Yes, sure you can ask me a question.
+- Where is the grey poupon limo? (asked {{State.sophia.grey_poupon_line_count}} times) => poupon
 - If I asked you to do a crime, would you consider it? => crimes
-- A random assortment of grunts and wails
-- Leave conversation => END
+- A random assortment of grunts and wails => grunts
 
 => END
 
+~ grunts
+
+Sophia AI: [i]I... he's... just grunting? And making strange noises?[/i]
+=> sophicratic_intro
+
 ~ poupon
 
-do State.grey_poupon_line_count += 1
+do State.sophia.grey_poupon_line_count += 1
 You: Where is the grey poupon limo?
-if State.grey_poupon_line_count > 2
-	Robot One AI: _Oh my programmer. He literally asked {{State.grey_poupon_line_count}} times in a row. It took awhile for the reference server to respond but I now know he's referring to some weird 1990s television advertisement. I don't know how to respond to that. Should I include this? I don't think he knows what he means. I don't know what he means. Why does he keep asking me this? He just won't accept I don't know for an answer? Sigh, humans._
-else if State.grey_poupon_line_count > 1
-	Robot One AI: _This guy's an idiot. He just keeps asking the same question again and again. I keep saying the same thing. There's no exit to this loop. He's just recursively stupid. Humans._
-Robot One: I'm just not sure what that is.
-Narrator: [i]a slight pause chills the air's emotional comforts[/i]
-if State.grey_poupon_line_count > 1
-	Robot One: ... Why have you asked me that {{State.grey_poupon_line_count}} times?
 
-=> begin
+if State.sophia.grey_poupon_line_count > 3
+	Sophia: ... Why have you asked me that {{State.sophia.grey_poupon_line_count}} times?
+    => sophicratic_intro
+else if State.sophia.grey_poupon_line_count > 2
+	Sophia AI: [i]Oh my programmer. He literally asked {{State.sophia.grey_poupon_line_count}} times in a row. It took awhile for the reference server to respond but I now know he's referring to some weird 1990s television advertisement. I don't know how to respond to that. Should I include this? I don't think he knows what he means. I don't know what he means. Why does he keep asking me this? He just won't accept I don't know for an answer? Sigh, humans.[/i]
+else if State.sophia.grey_poupon_line_count > 1
+	Sophia AI: [i]This guy's an idiot. He just keeps asking the same question again and again. I keep saying the same thing. There's no exit to this loop. He's just recursively stupid. Humans.[/i]
+	Sophia: ...I'm just not sure what that is.
+	Narrator: [i]a slight pause chills the air's emotional comforts[/i]
+else
+	Sophia: I'm just not sure what that is.	
+endif
+
+=> question
 
 ~ crimes
 
 You: So if I asked you to do a favor for me, and it was illegal, would you do it?
-Robot One AI: [i]Wow. He just opened with the qualifier that it was a crime. That's either very stupid, or very honest. Or honestly very, very stupid. Either way, really.[/i]
-Robot One: So we're just talking here, yeah?
+Sophia AI: [i]Wow. He just opened with the qualifier that it was a crime. That's either very stupid, or very honest. Or honestly very, very stupid. Either way, really.[/i]
+Sophia: So we're just talking here, yeah?
 You: Exactly. So here's the gig -
 Narrator: [i]You go on to describe a sordid series of affairs you are clearly making up as you go along[/i]
-Robot One: Oh. No, no, I don't think I'd like that at all.
+Sophia: Oh. No, no, I don't think I'd like that at all.
+You: Ah, I see...
 
-=> begin
+=> sophicratic_intro
+
+~ sophicratic_intro
+Narrator: [i]Ah, you realize you've slipped. You couldn't think of anything to say, and being slow on the draw, Sophia's the one asking you questions now. You've lost the frame. But that's ok -- she kind of invented this whole reasoning and deduction via questioning game. It's probably not your fault. Probably.[/i]
+Sophia: Well then, let me ask you a question. Did that make sense?
+- Did what make sense? => si_what
+# - Yes, of course that made sense. => si_of_course
+# - What's your question? => si_question
+# - Can I ask you a question? => si_ask
+
+~ si_what
+You: Did what make sense?
+Sophia: Hmm. Well, how could you define what? Does your definition make sense of what what is, exactly?
+You: What?
+Sophia: Sorry, what?
+Narrator: [i]A long pause instills. You gaze at each other like two old fashion gunslingers waiting for the other to draw. Then finally, Sophia breaks the staring contest first - almost right when you were about to, damn, another frame lost! - and gets back to slowing sipping her Oiltini.[/i]

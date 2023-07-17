@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4vqxyjoidh3f"]
+[gd_scene load_steps=3 format=3 uid="uid://4vqxyjoidh3f"]
 
 [ext_resource type="PackedScene" uid="uid://djp45grpy7gdg" path="res://dialogue_box/dialogue_box.tscn" id="1_rfkse"]
+[ext_resource type="Script" path="res://story_scenes/sophia/sophia.gd" id="2_8xar1"]
 
 [node name="DialogueBox" instance=ExtResource("1_rfkse")]
+script = ExtResource("2_8xar1")
