@@ -22,27 +22,39 @@ layer = 100
 script = ExtResource("1_nooun")
 
 [node name="Balloon" type="ColorRect" parent="."]
-size_flags_vertical = 0
-color = Color(0, 0, 0, 1)
-
-[node name="Margin" type="MarginContainer" parent="Balloon"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
+size_flags_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Margin" type="MarginContainer" parent="Balloon"]
+layout_mode = 0
+offset_right = 46.0
+offset_bottom = 202.0
 metadata/_edit_layout_mode = 1
 
-[node name="VBox" type="VBoxContainer" parent="Balloon/Margin"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Balloon/Margin"]
+layout_mode = 2
+follow_focus = true
+
+[node name="ParentVBox" type="VBoxContainer" parent="Balloon/Margin/ScrollContainer"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Balloon/Margin/ScrollContainer/ParentVBox"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Margin/VBox"]
+[node name="DialogueLabel" parent="Balloon/Margin/ScrollContainer/ParentVBox/VBox" instance=ExtResource("2_n7qfb")]
+visible = false
+layout_mode = 2
+text = "Dialogue"
+seconds_per_step = 0.005
+
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Margin/ScrollContainer/ParentVBox/VBox"]
+visible = false
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 mouse_filter = 1
@@ -51,16 +63,10 @@ text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/Margin/VBox" instance=ExtResource("2_n7qfb")]
+[node name="ResponseBox" type="VBoxContainer" parent="Balloon/Margin/ScrollContainer/ParentVBox"]
 layout_mode = 2
-text = "Dialogue"
-seconds_per_step = 0.005
 
-[node name="Responses" type="VBoxContainer" parent="Balloon/Margin/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="ResponseTemplate" type="RichTextLabel" parent="Balloon/Margin/VBox"]
+[node name="ResponseTemplate" type="RichTextLabel" parent="Balloon/Margin/ScrollContainer/ParentVBox/ResponseBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_5d24i")
@@ -72,6 +78,10 @@ scroll_active = false
 shortcut_keys_enabled = false
 meta_underlined = false
 hint_underlined = false
+
+[node name="Responses" type="VBoxContainer" parent="Balloon/Margin/ScrollContainer/ParentVBox/ResponseBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="resized" from="Balloon/Margin" to="." method="_on_margin_resized"]

@@ -16,7 +16,7 @@ Sophia: Yes, sure you can ask me a question.
 
 ~ grunts
 
-Sophia AI: [i]I... he's... just grunting? And making strange noises?[/i]
+Sophia AI: [color=green][i]I... he's... just grunting? And making strange noises?[/i][/color]
 => sophicratic_intro
 
 ~ poupon
@@ -25,12 +25,12 @@ do State.sophia.grey_poupon_line_count += 1
 You: Where is the grey poupon limo?
 
 if State.sophia.grey_poupon_line_count > 3
-	Sophia: ... Why have you asked me that {{State.sophia.grey_poupon_line_count}} times?
+	Sophia: ...Why have you asked me that {{State.sophia.grey_poupon_line_count}} times?
     => sophicratic_intro
 else if State.sophia.grey_poupon_line_count > 2
-	Sophia AI: [i]Oh my programmer. He literally asked {{State.sophia.grey_poupon_line_count}} times in a row. It took awhile for the reference server to respond but I now know he's referring to some weird 1990s television advertisement. I don't know how to respond to that. Should I include this? I don't think he knows what he means. I don't know what he means. Why does he keep asking me this? He just won't accept I don't know for an answer? Sigh, humans.[/i]
+	Sophia AI: [color=green][i]Oh my programmer. He literally asked {{State.sophia.grey_poupon_line_count}} times in a row. It took awhile for the reference server to respond but I now know he's referring to some weird 1990s television advertisement. I don't know how to respond to that. Should I include this? I don't think he knows what he means. I don't know what he means. Why does he keep asking me this? He just won't accept I don't know for an answer? Sigh, humans.[/i][/color]
 else if State.sophia.grey_poupon_line_count > 1
-	Sophia AI: [i]This guy's an idiot. He just keeps asking the same question again and again. I keep saying the same thing. There's no exit to this loop. He's just recursively stupid. Humans.[/i]
+	Sophia AI: [color=green][i]This guy's an idiot. He just keeps asking the same question again and again. I keep saying the same thing. There's no exit to this loop. He's just recursively stupid. Humans.[/i][/color]
 	Sophia: ...I'm just not sure what that is.
 	Narrator: [i]a slight pause chills the air's emotional comforts[/i]
 else
@@ -42,7 +42,7 @@ endif
 ~ crimes
 
 You: So if I asked you to do a favor for me, and it was illegal, would you do it?
-Sophia AI: [i]Wow. He just opened with the qualifier that it was a crime. That's either very stupid, or very honest. Or honestly very, very stupid. Either way, really.[/i]
+Sophia AI: [color=green][i]Wow. He just opened with the qualifier that it was a crime. That's either very stupid, or very honest. Or honestly very, very stupid. Either way, really.[/i][/color]
 Sophia: So we're just talking here, yeah?
 You: Exactly. So here's the gig -
 Narrator: [i]You go on to describe a sordid series of affairs you are clearly making up as you go along[/i]
@@ -64,4 +64,6 @@ You: Did what make sense?
 Sophia: Hmm. Well, how could you define what? Does your definition make sense of what what is, exactly?
 You: What?
 Sophia: Sorry, what?
-Narrator: [i]A long pause instills. You gaze at each other like two old fashion gunslingers waiting for the other to draw. Then finally, Sophia breaks the staring contest first - almost right when you were about to, damn, another frame lost! - and gets back to slowing sipping her Oiltini.[/i]
+Sophia AI: [color=green][i]...[/i][/color]
+Narrator: [i]A long pause instills. You gaze at each other like two old fashion gunslingers waiting for the other to draw. Then finally, Sophia breaks the staring contest first - almost right when you were about to, damn, another frame lost! - and gets back to slowy sipping her Oiltini.[/i]
+=> sophicratic_intro

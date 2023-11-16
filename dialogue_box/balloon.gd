@@ -3,10 +3,15 @@ extends CanvasLayer
 
 @onready var balloon: ColorRect = $Balloon
 @onready var margin: MarginContainer = $Balloon/Margin
-@onready var character_label: RichTextLabel = $Balloon/Margin/VBox/CharacterLabel
-@onready var dialogue_label := $Balloon/Margin/VBox/DialogueLabel
-@onready var responses_menu: VBoxContainer = $Balloon/Margin/VBox/Responses
+@onready var scroll: ScrollContainer = $Balloon/Margin/ScrollContainer
+@onready var parent_vbox: VBoxContainer = $Balloon/Margin/ScrollContainer/ParentVBox
+@onready var character_label: RichTextLabel = $Balloon/Margin/ScrollContainer/ParentVBox/VBox/CharacterLabel
+@onready var dialogue_label := $Balloon/Margin/ScrollContainer/ParentVBox/VBox/DialogueLabel
+@onready var responses_menu: VBoxContainer = $Balloon/Margin/ScrollContainer/ParentVBox/ResponseBox/Responses
 @onready var response_template: RichTextLabel = %ResponseTemplate
+
+## Last character
+var last_character: String = ""
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -36,8 +41,18 @@ var dialogue_line: DialogueLine:
 		
 		dialogue_line = next_dialogue_line
 		
-		character_label.visible = not dialogue_line.character.is_empty()
-		character_label.text = tr(dialogue_line.character, "dialogue")
+		# character_label.visible = not dialogue_line.character.is_empty()
+		# character_label.text = tr(dialogue_line.character, "dialogue")
+		if !dialogue_line.character.is_empty() && last_character != dialogue_line.character:
+			last_character = dialogue_line.character
+			var new_character_label = character_label.duplicate(0)
+			new_character_label.visible = true
+			new_character_label.text = tr(dialogue_line.character, "dialogue")
+			$Balloon/Margin/ScrollContainer/ParentVBox/VBox.add_child(new_character_label)
+		
+		dialogue_label = load("res://addons/dialogue_manager/dialogue_label.tscn").instantiate()
+		
+		$Balloon/Margin/ScrollContainer/ParentVBox/VBox.add_child(dialogue_label)
 		
 		dialogue_label.modulate.a = 0
 		dialogue_label.custom_minimum_size.x = dialogue_label.get_parent().size.x - 1
@@ -78,6 +93,7 @@ var dialogue_line: DialogueLine:
 			is_waiting_for_input = true
 			balloon.focus_mode = Control.FOCUS_ALL
 			balloon.grab_focus()
+			
 	get:
 		return dialogue_line
 
@@ -86,6 +102,14 @@ func _ready() -> void:
 	response_template.hide()
 	balloon.hide()
 	balloon.custom_minimum_size.x = balloon.get_viewport_rect().size.x
+
+	margin.custom_minimum_size.x = balloon.get_viewport_rect().size.x - 30
+	margin.custom_minimum_size.y = balloon.get_viewport_rect().size.y - 30
+	margin.position.x = 15
+	margin.position.y = 15
+
+	scroll.custom_minimum_size.x = margin.custom_minimum_size.x
+	scroll.custom_minimum_size.y = margin.custom_minimum_size.y
 	
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -107,7 +131,6 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 ## Go to the next line
 func next(next_id: String) -> void:
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
-
 
 ### Helpers
 
@@ -160,7 +183,10 @@ func handle_resize() -> void:
 		call_deferred("handle_resize")
 		return
 		
-	balloon.custom_minimum_size.y = margin.size.y
+	balloon.custom_minimum_size.y = balloon.get_viewport_rect().size.y
+
+	parent_vbox.custom_minimum_size.x = margin.size.x
+	
 	# Force a resize on only the height
 	# balloon.size.y = 0
 	# var viewport_size = balloon.get_viewport_rect().size
