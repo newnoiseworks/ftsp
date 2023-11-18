@@ -31,6 +31,7 @@ size_flags_vertical = 0
 color = Color(0, 0, 0, 1)
 
 [node name="Margin" type="MarginContainer" parent="Balloon"]
+clip_contents = true
 layout_mode = 0
 offset_right = 46.0
 offset_bottom = 202.0
@@ -65,6 +66,7 @@ scroll_active = false
 
 [node name="ResponseBox" type="VBoxContainer" parent="Balloon/Margin/ScrollContainer/ParentVBox"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="ResponseTemplate" type="RichTextLabel" parent="Balloon/Margin/ScrollContainer/ParentVBox/ResponseBox"]
 unique_name_in_owner = true

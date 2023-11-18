@@ -5,8 +5,10 @@ extends CanvasLayer
 @onready var margin: MarginContainer = $Balloon/Margin
 @onready var scroll: ScrollContainer = $Balloon/Margin/ScrollContainer
 @onready var parent_vbox: VBoxContainer = $Balloon/Margin/ScrollContainer/ParentVBox
+@onready var dialogue_vbox: VBoxContainer = $Balloon/Margin/ScrollContainer/ParentVBox/VBox
 @onready var character_label: RichTextLabel = $Balloon/Margin/ScrollContainer/ParentVBox/VBox/CharacterLabel
 @onready var dialogue_label := $Balloon/Margin/ScrollContainer/ParentVBox/VBox/DialogueLabel
+@onready var response_box: VBoxContainer = $Balloon/Margin/ScrollContainer/ParentVBox/ResponseBox
 @onready var responses_menu: VBoxContainer = $Balloon/Margin/ScrollContainer/ParentVBox/ResponseBox/Responses
 @onready var response_template: RichTextLabel = %ResponseTemplate
 
@@ -79,12 +81,22 @@ var dialogue_line: DialogueLine:
 		dialogue_label.modulate.a = 1
 		if not dialogue_line.text.is_empty():
 			dialogue_label.type_out()
+			await get_tree().process_frame
+
+			if parent_vbox.size.y > margin.size.y:
+				scroll.set_deferred("scroll_vertical",  parent_vbox.size.y - margin.size.y)
+
 			await dialogue_label.finished_typing
-		
+
+
 		# Wait for input
 		if dialogue_line.responses.size() > 0:
 			responses_menu.modulate.a = 1
 			configure_menu()
+			await get_tree().process_frame
+			if parent_vbox.size.y > margin.size.y:
+				scroll.set_deferred("scroll_vertical",  parent_vbox.size.y - margin.size.y)
+
 		elif dialogue_line.time != null:
 			var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
 			await get_tree().create_timer(time).timeout
@@ -93,7 +105,8 @@ var dialogue_line: DialogueLine:
 			is_waiting_for_input = true
 			balloon.focus_mode = Control.FOCUS_ALL
 			balloon.grab_focus()
-			
+
+
 	get:
 		return dialogue_line
 
@@ -108,9 +121,10 @@ func _ready() -> void:
 	margin.position.x = 15
 	margin.position.y = 15
 
-	scroll.custom_minimum_size.x = margin.custom_minimum_size.x
-	scroll.custom_minimum_size.y = margin.custom_minimum_size.y
-	
+	response_box.custom_minimum_size.x = margin.custom_minimum_size.x - 30
+
+	scroll.size.x = 960
+
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
 
@@ -182,11 +196,7 @@ func handle_resize() -> void:
 	if not is_instance_valid(margin):
 		call_deferred("handle_resize")
 		return
-		
-	balloon.custom_minimum_size.y = balloon.get_viewport_rect().size.y
 
-	parent_vbox.custom_minimum_size.x = margin.size.x
-	
 	# Force a resize on only the height
 	# balloon.size.y = 0
 	# var viewport_size = balloon.get_viewport_rect().size
